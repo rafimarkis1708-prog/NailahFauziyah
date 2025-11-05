@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untukmu yang Kucinta 💕</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #ffe6eb, #ffd6f9, #ffcce0);
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      color: #e75480;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px rgba(255,192,203,0.7);
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.7);
+      margin: 15px 0;
+    }
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .slideshow img.active {
+      opacity: 1;
+    }
+
+    #loveText {
+      font-size: 1.5rem;
+      color: #ff6699;
+      margin-top: 10px;
+      transition: opacity 1s ease;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: #ff6699;
+      animation: fall linear forwards;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Untukmu yang Kucinta 💞</h1>
+
+  <div class="slideshow">
+    <!-- Ganti URL foto-foto ini -->
+    <img src="https://i.ibb.co/6r6h9F2/love.jpg" class="active">
+    <img src="https://i.ibb.co/f85sT8f/couple1.jpg">
+    <img src="https://i.ibb.co/9r0qRfz/couple2.jpg">
+  </div>
+
+  <div id="loveText">Kamu adalah semesta kecil dalam hidupku 💖</div>
+
+  <!-- Musik romantis -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/03/22/audio_8a38a2f28c.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Animasi hati jatuh
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💗';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heart.style.fontSize = (12 + Math.random() * 24) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+
+    // Slideshow otomatis
+    const slides = document.querySelectorAll('.slideshow img');
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 4000);
+
+    // Teks cinta berganti otomatis
+    const loveTexts = [
+      "Kamu adalah semesta kecil dalam hidupku 💖",
+      "Setiap detik bersamamu adalah anugerah 💞",
+      "Aku ingin menua bersamamu selamanya 💕",
+      "Kamu adalah alasan aku tersenyum setiap hari 💓"
+    ];
+    let textIndex = 0;
+    const textElement = document.getElementById('loveText');
+    setInterval(() => {
+      textElement.style.opacity = 0;
+      setTimeout(() => {
+        textIndex = (textIndex + 1) % loveTexts.length;
+        textElement.textContent = loveTexts[textIndex];
+        textElement.style.opacity = 1;
+      }, 1000);
+    }, 5000);
+  </script>
+</body>
+</html>
